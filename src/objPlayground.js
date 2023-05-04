@@ -45,17 +45,17 @@ const calculator = (number1, number2) => {
 };
 
 const arrayGenerator = (type, object) => {
-  let arrayGenerator = [];
+  let array = [];
   
   if (type === 'keys') {
-    arrayGenerator = Object.keys(object);
+    array = Object.keys(object);
   } else if (type === 'values') { 
-    arrayGenerator = Object.values(object);
+    array = Object.values(object);
   } else if (type === 'entries') {
-    arrayGenerator = Object.entries(object);
-  };
+    array = Object.entries(object);
+  }
 
-  return arrayGenerator;
+  return array;
 };
 
 module.exports = { calculator, arrayGenerator };
