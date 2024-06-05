@@ -9,10 +9,7 @@ O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda i
 <details>
   <summary><strong>O que foi desenvolvido</strong></summary><br />
 
-Um novo sistema para organizar os livros de uma biblioteca.
-
-Foi trabalhado com uma estrutura de dados representando uma lista de livros que contém informações como nome do livro, gênero, pessoa autora do livro e data de lançamento.
-Complementei as funções criadas no arquivo `index.js` que está dentro da pasta `src/`.
+Foi implementado várias funções na resolução dos requisitos propostos e/ou testes unitários para garantir que as implementações das funções estão corretas, de acordo com o que está sendo solicitado em cada enunciado.
 
 </details>
 
@@ -32,7 +29,7 @@ Para instalar as dependências :  - `npm install`
 <summary><strong>Testes</strong></summary><br />
 **Testes desenvolvidos pela Trybe**
 
-Todos os requisitos do projeto foram testados **automaticamente** por meio do `Nvm`. 
+Todos os requisitos do projeto foram testados **automaticamente** por meio do `Jest`. 
 
 ## Observações técnicas
 
@@ -42,290 +39,354 @@ Alguns requisitos seguiram um padrão pré-estabelecido para que os testes autom
 
 <details>
 <summary><strong>Estrutura do projeto</strong></summary>
+ Este repositório contém um template de uma aplicação NodeJS (observe a existência do arquivo package.json). Após clonar o projeto e instalar as dependências através do `npm install`, não precisei realizar nenhuma configuração adicional. Todos os arquivos estritamente necessários para finalizar o projeto já estavam criados, não sendo necessária a criação de outros arquivos. Completei as funções e testes unitários de forma a satisfazer os requisitos listados na seção **Requisitos do projeto**.
 
-Na pasta raiz do exercício, temos as pastas `src`, `evaluator` e `data`.
+  As funções que foram implementadas estão dentro da pasta `src` e seus respectivos testes estão na pasta `tests`. O nome dos arquivos também segue uma ordem definida. Basicamente, os arquivos de teste possuem o nome do arquivo alvo (arquivo da funcionalidade) acrescido do nome `.spec.js`.
 
-A pasta `src` contém o arquivo `index.js` com cada uma das funções que foram implementadas. 
-A pasta `data` contém o arquivo `library.js`, que armazena os dados que você vai utilizar para retornar as informações sobre a biblioteca.Desenvolvido pela Trybe.
-A pasta `evaluator` possui os testes automatizados que avaliarão o seu projeto; os conteúdos desta pasta não devem ser alterados.Desenvolvido pela Trybe.
+  Há um arquivo como `src/exemplo.js` que contém a implementação de uma função e um arquivo como `tests/exemplo.spec.js` com os testes unitários referentes à função presente no arquivo `src/exemplo.js`.
 
-<details>
-  <summary>
-    O arquivo <code>library.js</code> contém um <strong>objeto</strong> no seguinte formato:
-  </summary> <br />
-
-```javascript
-{
-	books: [
-    {
-        id: 1,
-        name: 'As Crônicas de Gelo e Fogo',
-        genre: 'Fantasia',
-        author: {
-        name: 'George R. R. Martin',
-        birthYear: 1948,
-        },
-        releaseYear: 1991,
-    },
-    {
-        id: 2,
-        name: 'O Senhor dos Anéis',
-        genre: 'Fantasia',
-        author: {
-        name: 'J. R. R. Tolkien',
-        birthYear: 1892,
-        },
-        releaseYear: 1954,
-    },
-    {
-        id: 3,
-        name: 'Fundação',
-        genre: 'Ficção Científica',
-        author: {
-        name: 'Isaac Asimov',
-        birthYear: 1920,
-        },
-        releaseYear: 1951,
-    },
-    {
-        id: 4,
-        name: 'Duna',
-        genre: 'Ficção Científica',
-        author: {
-        name: 'Frank Herbert',
-        birthYear: 1920,
-        },
-        releaseYear: 1965,
-    },
-    {
-        id: 5,
-        name: 'A Coisa',
-        genre: 'Terror',
-        author: {
-        name: 'Stephen King',
-        birthYear: 1947,
-        },
-        releaseYear: 1986,
-    },
-    {
-        id: 6,
-        name: 'O Chamado de Cthulhu',
-        genre: 'Terror',
-        author: {
-        name: 'H. P. Lovecraft',
-        birthYear: 1890,
-        },
-        releaseYear: 1928,
-    },
-  ]
-}
-```
-
-<details>
-  <summary>
-  O array <code>books</code> guarda as informações de cada livro da biblioteca
-  </summary> <br />
-
-  | Chave | Descrição |
-  | ------------ | ----------|
-  | `id`         | é o identificador do livro |
-  | `name`       | é o nome do livro |
-  | `genre`      | é o gênero do livro |
-  | `releaseYear`| é o ano de lançamento do livro |
-  | `author` | é um objeto que representa a pessoa autora do livro |
-
-</details>
-
-<details>
-  <summary>
-  O objeto <code>author</code> é onde ficam as informações de cada pessoa autora
-  </summary> <br />
-
-  | Chave | Descrição |
-  | ----------- | ------ |
-  | `name`        | é o nome dessa pessoa |
-  | `birthYear` | é o ano de nascimento dessa pessoa |
-
-</details>
-
-</details>
+  Cada função possui um bloco de comentários em suas primeiras linhas explicando qual é o trabalho que a função deve realizar.
 
 <br />
 </details>
 
-# Requisitos
+# Requisitos Obrigatórios
 
-## 1. Filtre todos os objetos do gênero ficção científica ou fantasia.
+⚠️ Lembre-se de que o seu projeto só será avaliado se estiver passando por **todos os _checks_** do **Linter**. Utilize o comando `npm run lint` no seu terminal para verificar os _checks_ do **Linter** 😉 ⚠️
+
+---
+
+### 1. Implemente a função `average`
 
 <details>
-  <summary>
-  Implemente a função <code>fantasyOrScienceFiction</code> para buscar apenas os livros do gênero ficção científica ou fantasia.
-  </summary> <br />
+  <summary>A função `average` recebe um array de tamanho variável e retorna a média dos valores recebidos. Caso a função receba algum valor não numérico ou um array vazio, o valor `undefined` deve ser retornado.</summary><br/> 
+  
+  Todos os resultados devem ser arredondados para valores inteiros. Ex: 4,6 vira 5; 1,3 vira 1. O arquivo `average.spec.js` contém os testes para `average` já implementados. Implemente a função no arquivo `src/average.js` de forma que ela atenda aos testes propostos.
 
-**O que será testado:**
+  **O que será testado:**
 
-- A função `fantasyOrScienceFiction`, caso não receba nenhum parâmetro, deve retornar o seguinte array:
+  - A função `average` deve retornar a média de seus valores ao receber um array de números;
+  - A função `average` deve retornar `undefined` ao receber um array que contém valores não numéricos;
+  - A função `average` deve retornar `undefined` ao receber um array vazio.
 
-```js
-[
+</details>
+
+---
+
+### 2. Implemente os casos de teste para a função `numbers`
+
+<details>
+  <summary>A função `numbers` recebe um array de tamanho variável e retorna `true` se todos os parâmetros forem do tipo 'number' e `false` caso contrário.</summary><br/> 
+  
+  Essa função já está implementada no arquivo `src/numbers.js`. Escreva pelo menos quatro testes para essa função para garantir que a implementação de `numbers` está correta.
+
+  **O que será testado:**
+
+  - A função `numbers` deve retornar `true` quando o array passado por parâmetro contém somente números.
+
+</details>
+
+---
+
+### 3. Implemente a função `vqv`
+
+<details>
+  <summary>Use template literals para escrever a função `vqv` que recebe o seu nome e a sua idade e retorna o parágrafo descrito abaixo:</summary><br/>
+
+  ```javascript
+  `Oi, meu nome é Tunico!
+  Tenho 30 anos,
+  trabalho na Trybe e mando muito em programação!
+  #VQV!`
+  ```
+
+  Caso a função `vqv` seja chamada sem nenhum parâmetro, o valor `undefined` deve ser retornado. O arquivo `vqv.spec.js` contém os testes para `vqv` já implementados. Implemente a função no arquivo `src/vqv.js` de forma que ela atenda aos testes propostos.
+
+  **O que será testado**
+
+  - `vqv` deve ser uma função;
+  - A função `vqv` deve retornar dados do tipo string;
+  - A função `vqv` deve retornar a frase esperada quando passados parâmetros de nome e idade;
+  - A função `vqv` deve retornar `undefined` quando chamada sem parâmetro.
+
+</details>
+
+---
+
+### 4. Implemente os casos de teste para a função `circle`
+
+<details>
+
+  <summary>A função `circle` recebe o raio de um círculo e retorna um objeto contendo as suas informações: Raio, Área e Circunferência. Se não for especificado um raio, a função retorna `undefined`.</summary></br>
+  
+  Essa função já está implementada no arquivo `src/circle.js`. Escreva pelo menos seis testes para essa função para garantir que a implementação de `circle` está correta.
+
+  **O que será testado**
+
+  - O teste da função `circle`, ao receber um raio, deve retornar um objeto com as informações corretas (Raio, Área e Circunferência).
+
+</details>
+
+---
+
+### 5. Implemente a função `createStudent`
+
+<details>
+<summary>A função `createStudent` recebe como parâmetro um **nome**, e retorna um objeto contendo duas chaves:</summary></br>
+
+  1. **name**, contendo o nome passado como parâmetro;
+  2. **feedback**, contendo uma função que retorna a frase `"Eita pessoa boa!"` ao ser chamada.
+
+  O arquivo `createStudent.spec.js` contém os testes para `createStudent` já implementados. Implemente a função no arquivo `src/createStudent.js` de forma que ela atenda aos testes propostos.
+
+  **O que será testado**
+
+  - A função `createStudent` deve retornar um objeto que contenha duas chaves: `name`, contendo o nome passado como parâmetro; e `feedback`, contendo uma função que retorna a frase `"Eita pessoa boa!"` ao ser chamada.
+
+</details>
+
+---
+
+### 6. Implemente os casos de teste para a função `productDetails`
+
+<details>
+  <summary>A função `productDetails` recebe duas strings que representam nomes de produtos, e retorna um array contendo dois objetos com os detalhes dos respectivos produtos:</summary></br>
+
+  ```javascript
+  productDetails('Alcool gel', 'Máscara');
+  ```
+
+  **Retorna:**
+
+  ```js
+  [
+    {
+      name: 'Alcool gel'
+      details: {
+        productId: 'Alcool gel123'
+      }
+    },
+    {
+      name: 'Máscara'
+      details: {
+        productId: 'Máscara123'
+      }
+    }
+  ]
+  ```
+
+  Essa função já está implementada no arquivo `src/productDetails.js`. Escreva pelo menos cinco testes para essa função no arquivo `tests/productDetails.js` para garantir que a implementação de `productDetails` está correta.
+
+  **O que será testado**
+
+  - O teste da função `productDetails`, ao receber duas strings, deve retornar um array de objetos e se cada objeto contém os dados necessários.
+
+</details>
+
+---
+
+### 7. Implemente as funções `calculator` e `arrayGenerator`
+
+<details>
+  <summary>A função `calculator` recebe dois números inteiros como parâmetro e retorna um objeto com as seguintes chaves:</summary></br>
+  - sum;
+  - mult;
+  - div;
+  - sub.
+
+  Para cada chave atribua como valor a operação correspondente à sua chave:
+  - `sum:` retorna o resultado da soma dos dois números;
+  - `mult:` retorna o resultado da multiplicação dos dois números;
+  - `div:` retorna o resultado da divisão dos dois números;
+  - `sub:` retorna o resultado da subtração dos dois números.
+
+  Os resultados das divisões devem sempre ser arredondados para baixo.
+
+  Parâmetros:
+  - Dois números inteiros.
+
+  Comportamento:
+  ```javascript
+  calculator(1, 2); // { sum: 3, mult: 2, div: 0, sub: -1 }
+  ```
+
+  Já a função `arrayGenerator` converte objetos em arrays, de chaves, valores ou ambos. Ela deve receber dois parâmetros:
+
+  - o primeiro parâmetro deve ser uma string que indica o tipo de conversão;
+  - o segundo parâmetro deve ser um objeto semelhante ao que é retornado pela função calculator que você acabou de desenvolver.
+
+  Parâmetros:
+  - Uma string que indica o tipo de conversão;
+  - Um objeto no formato { sum: 3, mult: 2, div: 0, sub: -1 };
+
+  Comportamento:
+  ```javascript
+  arrayGenerator('keys', { sum: 3, mult: 2, div: 1, sub: 0 }) // [ 'sum', 'mult', 'div', 'sub' ]
+  arrayGenerator('values', { sum: 3, mult: 2, div: 1, sub: 0 }) // [ 3, 2, 1, 0 ]
+  arrayGenerator('entries', { sum: 3, mult: 2, div: 1, sub: 0 }) // [ [ 'sum', 3 ], [ 'mult', 2 ], [ 'div', 1 ], [ 'sub', 0 ] ]
+  ```
+  O arquivo `objPlayground.spec.js` contém os testes para `calculator` e `arrayGenerator` já implementados. Implemente as funções no arquivo `src/objPlayground.js` de forma que ela atenda aos testes propostos.
+
+  **O que será testado**
+
+  - A função `calculator` deve retornar os valores esperados;
+  - A função `arrayGenerator` deve retornar os valores esperados.
+
+</details>
+
+---
+
+### 8. Implemente a função `myCounter`
+
+<details>
+  <summary>A função `myCounter` possui dois loops aninhados que inserem valores dentro de um array. Como podemos perceber, eles vão adicionando valores ao array até sua condição de parada.</summary></br>
+
+   Corrija a função `myCounter`, sem eliminar nenhum dos loops de repetição, para que a função retorne o array correto. O arquivo `myCounter.spec.js` contém os testes para `myCounter` já implementados. Implemente a função no arquivo `src/myCounter.js` de forma que ela atenda aos testes propostos.
+
+  **O que será testado**
+
+  - A função `myCounter` deve retornar os dados esperados de acordo com o que está implementado no teste.
+
+</details>
+
+---
+
+### 9. Implemente os casos de teste para a função `getCharacter`
+
+<details>
+
+  <summary>A função `getCharacter` já está implementada e recebe como parâmetro de entrada uma string que representa o nome de uma personagem de ficção. Ela retorna um objeto contendo o nome da personagem, a sua classe e as suas frases.</summary></br>
+
+  Exemplo:
+
+  ```javascript
+  getCharacter('Arya');
+  ```
+
+  **Retorna:**
+
+  ```javascript
   {
-    id: 1,
-    name: 'As Crônicas de Gelo e Fogo',
-    genre: 'Fantasia',
-    author: { name: 'George R. R. Martin', birthYear: 1948 },
-    releaseYear: 1991
-  },
-  {
-    id: 2,
-    name: 'O Senhor dos Anéis',
-    genre: 'Fantasia',
-    author: { name: 'J. R. R. Tolkien', birthYear: 1892 },
-    releaseYear: 1954
-  },
-  {
-    id: 3,
-    name: 'Fundação',
-    genre: 'Ficção Científica',
-    author: { name: 'Isaac Asimov', birthYear: 1920 },
-    releaseYear: 1951
-  },
-  {
-    id: 4,
-    name: 'Duna',
-    genre: 'Ficção Científica',
-    author: { name: 'Frank Herbert', birthYear: 1920 },
-    releaseYear: 1965
+    name: 'Arya Stark',
+    class: 'Rogue',
+    phrases: ['Not today', 'A girl has no name.']
   }
-];
-```
+  ```
+
+  Essa função já está implementada no arquivo `src/getCharacter.js`. Escreva pelo menos seis testes para essa função no arquivo `tests/getCharacter.spec.js` para garantir que a implementação de `getCharacter` está correta.
+
+  **O que será testado**
+
+  - O teste da função `getCharacter` ao não receber nenhum parâmetro, deve retornar `undefined`.
+  - O teste da função `getCharacter` ao receber uma string, deve retornar os dados esperados, de acordo com a tabela apresentada no arquivo de testes.
+  - O teste da função `getCharacter` deve verificar se o parâmetro é _case insensitive_, ou seja, não faz diferença entre letras maiúsculas e minúsculas.
 
 </details>
 
 ---
 
-## 2. Filtre os livros com mais de 60 anos desde sua publicação e ordene a partir do livro mais velho para o mais novo.
+### 10. Implemente a função `createMenu`, bem como seus casos de teste
 
 <details>
-  <summary>
-  Implemente a função <code>oldBooksOrdered</code> que deve retornar um <code>array</code> com os livros publicados há no mínimo 60 anos, a partir de um ano recebido por parâmetro, ordenados do mais velho para o mais novo.
-  </summary> <br />
+  <summary>Esse último requisito vai guiar você por um rico processo de Desenvolvimento Orientado a Testes ou TDD - Test Driven Development</summary></br>
 
-**O que será testado:**
+  **Leia com atenção os pontos abaixo.**
 
-> Use como data limite o ano de 2020, sendo assim, o resultado deve conter todos os livros com mais de 60 anos até 2020.
+  Imagine a seguinte situação: você é responsável por escrever o código do sistema de pedidos de um restaurante. Nesse sistema será possível cadastrar o menu do restaurante. 
+  Dado que um menu foi cadastrado, o sistema deve disponibilizar um objeto que permite:
 
-- A função `oldBooksOrdered`, com o parâmetro `2020`, deve retornar o seguinte array:
+  - Ler o menu que foi cadastrado;
+  - Fazer pedidos;
+  - Verificar o que foi pedido;
+  - Somar o valor da conta.
 
-```js
-[
+  O menu é cadastrado separando as comidas (`food`) das bebidas (`drinks`). Este menu é passado em um objeto, seguindo o exemplo abaixo:
+
+  ```js
+    {
+      food: {coxinha: 3.90, sanduiche: 9.90},
+      drinks: {agua: 3.90, cerveja: 6.90},
+    }
+  ```
+
+  O objeto tem duas propriedades: `food` e `drinks`. Cada uma dessas propriedades tem um `value` que também é um objeto, onde as propriedades (`keys`) desse objeto são os itens do restaurante, como por exemplo `coxinha` e a `value` é o valor/preço daquele item, exemplo, `3.90`. 
+  
+  Você deverá se orientar através dos tópicos abaixo para garantir o bom desenvolvimento do sistema.
+
+  **IMPORTANTE - BOAS PRÁTICAS TDD: COMECE PELO TESTE 1 DO ARQUIVO `tests/restaurant.spec.js`** 
+
+  Se surgirem dúvidas, não deixe de consultar o nosso conteúdo sobre [TDD](https://app.betrybe.com/course/fundamentals/introducao-a-javascript-es6-e-testes-unitarios/primeiros-passos-em-jest/eb321d06-e126-4c84-8d7e-6134973bf081/conteudos/b02b5214-5797-436a-9c3f-aa9344361bd9/testando-em-pequenos-passos/d33319dc-ee06-4e09-97d6-4db1ac440e25?use_case=side_bar).
+
+  > **Observação:** Todos os testes devem ser escritos no arquivo `tests/restaurant.spec.js` e todas as implementações devem ser escritas no arquivo `src/restaurant.js`.
+
+
+  1. Escreva dois testes, um que verifica se a função `createMenu()` **retorna** um objeto que possui a chave `fetchMenu` e outro verificando se o valor da chave fetchMenu do objeto retornado pela função `createMenu()` é uma função.
+
+  > **De olho na dica 👀:** Lembre-se: uma propriedade de um objeto pode receber qualquer valor, além de números, strings, objetos e arrays. Podemos passar como `value` de uma propriedade (`key`) de um objeto uma função.
+
+  2. Escreva um teste que verifica se o objeto retornado pela função `createMenu({ food: {}, drinks: {} }).fetchMenu()` retorna um objeto cujas chaves são somente `food` e `drinks`.
+
+  3. Escreva um teste que verifica se o menu passado pra função `createMenu()` é idêntico ao menu recuperado pela função `createMenu({ food: {}, drinks: {} }).fetchMenu()`.
+
+  4. Agora vamos começar a desenvolver a nossa função `createMenu()`! Vá até o arquivo `restaurant.js`. 
+  - A função `createMenu` deve receber um objeto como parâmetro e retornar um outro objeto, contendo outras propriedade que iremos desenvolver nos tópicos abaixo.
+  - Passe um parâmetro para função `createMenu`, esse parâmetro será um objeto. Depois disso, a função `createMenu` deve retornar um objeto onde uma das chaves é `fetchMenu`, o valor dessa chave é uma função e essa função retorna o objeto passado como parâmetro para `createMenu`.
+
+  > **De olho na dica 👀:** Da uma olhadinha no teste e na dica do tópico 1.
+
+  5. Escreva um teste que verifica se a propriedade `consumption` do objeto retornado pela função `createMenu({ food: {}, drinks: {} })`, após a criação do menu, retorna um array vazio.
+
+  6. Volte ao arquivo `restaurant.js` e adicione ao objeto retornado por `createMenu()` uma chave `consumption` que, como valor inicial, tem um array vazio.
+
+  7. A função `createMenu` retorna um objeto. Certo? Esse objeto até aqui já possui algumas chaves(`keys`). 
+  Nosso objeto retornado pela função `createMenu` tem essa aparência:
+  
+  ```
   {
-    id: 6,
-    name: 'O Chamado de Cthulhu',
-    genre: 'Terror',
-    author: { name: 'H. P. Lovecraft', birthYear: 1890 },
-    releaseYear: 1928,
-  },
-  {
-    id: 3,
-    name: 'Fundação',
-    genre: 'Ficção Científica',
-    author: { name: 'Isaac Asimov', birthYear: 1920 },
-    releaseYear: 1951,
-  },
-  {
-    id: 2,
-    name: 'O Senhor dos Anéis',
-    genre: 'Fantasia',
-    author: { name: 'J. R. R. Tolkien', birthYear: 1892 },
-    releaseYear: 1954,
-  },
-];
+    fetchMenu: () => [Function: fetchMenu],
+    consumption: [],
+  }
+
+  ```
+  
+Agora precisamos que você escreva um teste levando em consideração que nosso objeto vai receber mais uma chave, que é `order` e essa chave tem como valor uma função. 
+
+Escreva um teste para a seguinte situação: caso o valor (que nesse caso é uma string) passada por parâmetro para `order` não conste no objeto passado como parâmetro para `createMenu` (nem em `food` ou `drinks`), o retorno da chave `order` deve ser:
+  - exibir a mensagem `"Item indisponível"`;
+  - e não alterar a chave `consumption`.
+  - Caso o valor exista no objeto passado como parâmetro para `createMenu` o item deve ser adicionado ao array `consumption`.
+
+Veja o exemplo abaixo:
+
+   ```
+  const objetoRetornadoCreateMenu = createMenu(
+    {food: {coxinha: 3.90, sanduiche: 9.90},
+    drinks: {agua: 3.90, cerveja: 6.90}});
+  
+  objetoRetornadoCreateMenu.order('coxinha')
+
+  objetoRetornadoCreateMenu.consumption // deve retornar ['coxinha']  
+
+   objetoRetornadoCreateMenu.consumption // deve retornar ['picanha']  // Item indisponível 
+
 ```
 
-</details>
+  8. Vá até o arquivo `restaurant.js` e na nossa funcão `createMenu` que retorna um objeto, iremos criar a chave `order`.
+  
+  A chave `order` que tem como valor uma função que ao receber uma string como parâmetro, adiciona essa string ao array da chave `consumption`.
 
----
+  * Caso o valor passado por parâmetro não conste no menu (nem em `food` ou `drinks`), o retorno da chave `order` deve:
+  - exibir a mensagem `"Item indisponível"`;
+  - não alterar a chave `consumption`.
 
-## 3. Faça uma função que retorne os nomes dos livros, dado o ano de nascimento das pessoas autoras.
+  9. Escreva um teste que verifica se, ao adicionar três pedidos em sequência, dentre bebidas e comidas, o array `consumption` contém os itens pedidos.
 
-<details>
-  <summary>
-  Implemente a função <code>booksByAuthorBirthYear</code> que deve retornar um <code>array</code> com os nomes dos livros escritos por pessoas autoras que nasceram no ano passado, de acordo com o que foi passado por parâmetro.
-  </summary> <br />
+  10. Escreva um teste que verifica se a função `order` aceita que pedidos repetidos sejam acrescidos a `consumption`.
 
-**O que será testado:**
+  11. Escreva um teste que verifica que, ao chamar a função `pay()` que será uma propriedade do objeto retornado pela função `createMenu`, deve retornar a soma dos preços de tudo que foi pedido, conforme registrado em `consumption`. A propriedade `pay` tem como valor uma função.
 
-- A função `booksByAuthorBirthYear`, ao ser executada com o argumento `1920`, deve retornar o seguinte array:
+  12. Adicione ao objeto retornado por `createMenu()` uma chave `pay` com uma função que percorre por todos os itens de `consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 
-```js
-[ 'Fundação', 'Duna' ];
-```
-
-</details>
-
----
-
-## 4. Crie um array que possua apenas os nomes de todas as pessoas autoras de ficção científica ou fantasia e ordene por ordem alfabética.
-
-<details>
-  <summary>
-  Implemente a função <code>fantasyOrScienceFictionAuthors</code> que deve retornar um <code>array</code> com o nome das pessoas autoras de ficção científica ou fantasia, ordenadas alfabeticamente.
-  </summary> <br />
-
-**O que será testado:**
-
-- A função `fantasyOrScienceFictionAuthors` deve retornar o seguinte array:
-
-```js
-[
-  'Frank Herbert',
-  'George R. R. Martin',
-  'Isaac Asimov',
-  'J. R. R. Tolkien',
-];
-```
-
-</details>
-
----
-
-## 5. Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
-
-<details>
-  <summary>
-  Implemente a função <code>oldBooks</code> que deve retornar um <code>array</code> com o nome dos livros com mais de 60 anos publicados, a partir de um ano recebido por parâmetro.
-  </summary> <br />
-
-**O que será testado:**
-
-- A função `oldBooks`, com o parâmetro `2022`, deve retornar o seguinte array:
-
-```js
-[
-  'O Senhor dos Anéis',
-  'Fundação',
-  'O Chamado de Cthulhu',
-];
-```
-
-</details>
-
----
-
-## 6. Encontre o primeiro resultado cujo nome registrado começa com três iniciais e retorne o nome do livro.
-
-<details>
-  <summary>
-  Implemente a função <code>authorWith3DotsOnName</code> que deve retornar o nome do primeiro livro cuja pessoa autora inicie seu nome com três iniciais.
-  </summary> <br />
-
-> **De olho na dica 👀:** cada inicial termina com um ponto.
-
-**O que será testado:**
-
-- A função `authorWith3DotsOnName` deve retornar a `string` "O Senhor dos Anéis";
-
-</details>
+   > **De olho na dica 👀:** Para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drinks`, para pegar o preço de cada item do menu.
 <br>
-
 *Exercicíos criado pela [Trybe](https://www.betrybe.com/)
